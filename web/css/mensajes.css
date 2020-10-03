@@ -1,0 +1,13 @@
+.msg{    
+    position: absolute;
+    display: none;
+    z-index: 3;
+    width:100%;
+
+    height: 61px;
+    text-align: center;
+    color: white;
+    background-color: red;
+    padding-top: 13px;
+    font-size: 19px;
+}
