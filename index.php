@@ -2,10 +2,7 @@
 <html>
     <head lang="es">
         <link href="web/boostrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
         <link href="web/css/mensajes.css" rel="stylesheet" type="text/css"/>
-
-
         <script src="web/boostrap/js/jquery.js" type="text/javascript"></script>
         <script src="web/boostrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="web/js/ajax.js" type="text/javascript"></script>
