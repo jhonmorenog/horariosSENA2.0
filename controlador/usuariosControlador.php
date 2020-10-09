@@ -88,9 +88,12 @@ class usuariosControlador extends Usuarios {
         $r->bindValue(":documento", $this->getDocumento());
         $r->bindValue(":clave_de_acceso", md5($this->getClave()));
         $r->execute();
-        // set the resulting array to associative
+        // se verifica el documento y contraseña
         $result = $r->setFetchMode(PDO::FETCH_ASSOC);
         foreach ($r->fetchAll() as $k => $v) {
+            /*
+             * variables de sesion con datos para poder usarlas más adelante
+             */
             session_start();
             $_SESSION['primer_nombre']=$V['documento'];
             $_SESSION['primer_apellido']=$V['primer_apellido'];
