@@ -1,4 +1,5 @@
 <?php
+require_once './controlador/interfaces/variables.php';
 if (isset($_POST['entrar'])) {
     @include './controlador/conexion.php';
     @include './controlador/interfaces/icrud.php';
@@ -29,7 +30,7 @@ and open the template in the editor.
 
 
         <meta charset="UTF-8">
-        <title>ASIS-CENIGRAF</title>
+        <title><?php echo TITULO; ?></title>
     </head>
     <body>
         <video class="fondo" autoplay>

@@ -1,6 +1,7 @@
 <?php
 if (isset($_POST['guardar'])) {
     require_once '../controlador/usuariosControlador.php';
+    include '../controlador/factoryQuery.php';
     $uc=new usuariosControlador();
     $uc->guardar();
     

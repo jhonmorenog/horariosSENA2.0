@@ -2,6 +2,7 @@
 
 @include '../modelo/usuarios.php';
 @include '../controlador/conexion.php';
+@include './factoryQuery.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -52,21 +53,22 @@ class usuariosControlador extends Usuarios {
     }
 
     public function guardar() {
+        
+        
+          $c = new Conexion();
 
-        $c = new Conexion();
-
-        $r = $c->con()->prepare("INSERT INTO `USUARIOS`(`documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `correo_electronico`, `clave_de_acceso`) "
-                . "VALUES (:documento, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :correo_electronico, :clave_de_acceso);");
-        $r->bindValue(":documento", $this->getDocumento());
-        $r->bindValue(":primer_nombre", $this->getPnombre());
-        $r->bindValue(":segundo_nombre", $this->getSnombre());
-        $r->bindValue(":primer_apellido", $this->getPapellido());
-        $r->bindValue(":segundo_apellido", $this->getSapellido());
-        $r->bindValue(":correo_electronico", $this->getCorreoElectronico());
-        $r->bindValue(":clave_de_acceso", md5($this->getClave()));
-        $r->execute();
-        $r=NULL;
-        $c=NULL;
+          $r = $c->con()->prepare("INSERT INTO `USUARIOS`(`documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `correo_electronico`, `clave_de_acceso`) "
+          . "VALUES (:documento, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :correo_electronico, :clave_de_acceso);");
+          $r->bindValue(":documento", $this->getDocumento());
+          $r->bindValue(":primer_nombre", $this->getPnombre());
+          $r->bindValue(":segundo_nombre", $this->getSnombre());
+          $r->bindValue(":primer_apellido", $this->getPapellido());
+          $r->bindValue(":segundo_apellido", $this->getSapellido());
+          $r->bindValue(":correo_electronico", $this->getCorreoElectronico());
+          $r->bindValue(":clave_de_acceso", md5($this->getClave()));
+          $r->execute();
+          $r=NULL;
+          $c=NULL; 
     }
 
     public function actualizar() {
@@ -95,14 +97,14 @@ class usuariosControlador extends Usuarios {
              * variables de sesion con datos para poder usarlas más adelante
              */
             session_start();
-            $_SESSION['primer_nombre']=$V['documento'];
-            $_SESSION['primer_apellido']=$V['primer_apellido'];
-            $_SESSION['correo_electronico']=$V['correo_electronico'];
+            $_SESSION['primer_nombre'] = $V['documento'];
+            $_SESSION['primer_apellido'] = $V['primer_apellido'];
+            $_SESSION['correo_electronico'] = $V['correo_electronico'];
             header("location:vista/");
         }
-       
-        $r=NULL;
-        $c=NULL;
+
+        $r = NULL;
+        $c = NULL;
     }
 
 }

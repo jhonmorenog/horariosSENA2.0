@@ -1,4 +1,5 @@
 <?php
+
 @include '../controlador/interfaces/icrud.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,6 +13,7 @@
  * @author jhon
  */
 abstract class Usuarios implements iCRUD {
+
     private $documento;
     private $pnombre;
     private $snombre;
@@ -19,16 +21,17 @@ abstract class Usuarios implements iCRUD {
     private $sapellido;
     private $correoElectronico;
     private $clave;
-    
-    function __construct($documento,$pnombre,$snombre, $papellido,$sapellido,$correoElectronico,$clave) {  
-        $this->clave=$clave;
-        $this->correoElectronico=$correoElectronico;
-        $this->documento=$documento;
-        $this->papellido=$papellido;
-        $this->pnombre=$pnombre;
-        $this->sapellido=$sapellido;
-        $this->snombre=$snombre;
+
+    function __construct($documento, $pnombre, $snombre, $papellido, $sapellido, $correoElectronico, $clave) {
+        $this->clave = $clave;
+        $this->correoElectronico = $correoElectronico;
+        $this->documento = $documento;
+        $this->papellido = $papellido;
+        $this->pnombre = $pnombre;
+        $this->sapellido = $sapellido;
+        $this->snombre = $snombre;
     }
+
     function getDocumento() {
         return $this->documento;
     }
@@ -92,5 +95,16 @@ abstract class Usuarios implements iCRUD {
         return $this;
     }
 
-    
+    function toArray() {
+        return array(
+            "documento" => $this->getDocumento(),
+            "primer_nombre" => $this->getPnombre(),
+            "segundo_nombre" => $this->getSnombre(),
+            "primer_apellido" => $this->getPapellido(),
+            "segundo_apellido" => $this->getSapellido(),
+            "correo_electronico" => $this->getCorreoElectronico(),
+            "clave_de_acceso" => md5($this->getClave())
+        );
+    }
+
 }
