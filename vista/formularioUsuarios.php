@@ -6,6 +6,7 @@ if (isset($_POST['guardar'])) {
     $uc->guardar();
     
 }
+include_once './menu.php';
 ?>
 <form method="post" action="formularioUsuarios.php">
     <label for="documento">documento</label>

@@ -86,7 +86,8 @@ class usuariosControlador extends Usuarios {
     public function ingresar() {
         $c = new Conexion();
 
-        $r = $c->con()->prepare("select * from USUARIOS where documento=:documento and :clave_de_acceso=:clave_de_acceso;");
+        $r = $c->con()->prepare("SELECT U.documento, U.primer_nombre, U.primer_apellido, R.rol FROM USUARIOS U INNER JOIN ROLES_USUARIOS RU ON U.documento=RU.USUARIOSdocumento INNER JOIN ROLES R ON RU.ROLESID=R.ID "
+                . "WHERE U.documento=:documento AND U.clave_de_acceso=:clave_de_acceso");
         $r->bindValue(":documento", $this->getDocumento());
         $r->bindValue(":clave_de_acceso", md5($this->getClave()));
         $r->execute();
@@ -100,6 +101,7 @@ class usuariosControlador extends Usuarios {
             $_SESSION['primer_nombre'] = $V['documento'];
             $_SESSION['primer_apellido'] = $V['primer_apellido'];
             $_SESSION['correo_electronico'] = $V['correo_electronico'];
+            $_SESSION['rol']=$V['rol'];
             header("location:vista/");
         }
 
